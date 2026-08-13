@@ -12,7 +12,7 @@ Ela é alguém muito importante para mim e, no fim das contas, percebi que aquil
 
 Em vez de tentar resumir tudo em uma carta, um presente ou algumas fotografias, criei um arquivo digital para guardar as coisas do jeito que eu enxergo: em capítulos, imagens, lembranças, textos e pequenos detalhes.
 
-**Mirela** é, ao mesmo tempo, uma homenagem a ela e um registro de quem nós somos.
+**Esse site** é, ao mesmo tempo, uma homenagem a ela e um registro de quem nós somos.
 
 ---
 
