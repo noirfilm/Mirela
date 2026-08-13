@@ -1,6 +1,6 @@
 # MIRELA — Quem é aquela garota?
 
-> Um pequeno documentário digital sobre uma pessoa que se tornou parte da minha vida.
+> Um pequeno documentário digital sobre duas vida, e também uma pessoa que se tornou parte da minha vida.
 
 ![Distância — trecho do arquivo](imagens/distancia.gif)
 
@@ -12,7 +12,7 @@ Ela é alguém muito importante para mim e, no fim das contas, percebi que aquil
 
 Em vez de tentar resumir tudo em uma carta, um presente ou algumas fotografias, criei um arquivo digital para guardar as coisas do jeito que eu enxergo: em capítulos, imagens, lembranças, textos e pequenos detalhes.
 
-**Esse site** é, ao mesmo tempo, uma homenagem a ela e um registro de quem nós somos.
+**Esse site** é um documento, um artigo sobre uma história, ao mesmo tempo, uma homenagem a ela e um registro de quem nós somos.
 
 ---
 
