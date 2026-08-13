@@ -52,6 +52,12 @@ body.js-enabled .reveal.reveal-text {
     transition-duration: 0.9s;
 }
 
+body.js-enabled .reveal.reveal-paragraph {
+    transform: translate3d(0, 18px, 0);
+    transition-duration: 0.8s;
+    transition-delay: var(--p-delay, 0s);
+}
+
 body.js-enabled .reveal.reveal-image {
     transform: translate3d(0, 24px, 0) scale(0.965);
     transition-duration: 1.05s;
@@ -246,6 +252,32 @@ h1, h2, h3 {
     height: 40vh;
     object-fit: cover;
     object-position: center 25%;
+}
+
+.memory-photo {
+    width: 100%;
+    margin: 0 auto 2rem;
+}
+
+.memory-photo img {
+    width: 100%;
+    max-height: 62vh;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.memory-caption {
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.55rem 0;
+    border-top: 1px solid var(--line-color);
+    border-bottom: 1px solid var(--line-color);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-color);
 }
 
 .hero-bottom {
@@ -460,6 +492,7 @@ h1, h2, h3 {
     body.js-enabled .reveal,
     body.js-enabled .reveal.reveal-title,
     body.js-enabled .reveal.reveal-text,
+    body.js-enabled .reveal.reveal-paragraph,
     body.js-enabled .reveal.reveal-image,
     body.js-enabled .reveal.reveal-tag,
     body.js-enabled .reveal.reveal-line {
