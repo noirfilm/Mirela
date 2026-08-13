@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("js-enabled");
 
+    // Remove the old hidden YouTube player from the previous experiment.
+    // The site remains completely independent from external media.
+    document.getElementById("youtube-player")?.remove();
+
     const revealElements = document.querySelectorAll(".reveal");
     const parallaxImage = document.querySelector(".parallax-img");
     const jonasChapter = document.querySelector("#capitulo-05");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Define uma linguagem de movimento diferente para cada tipo de elemento.
     const classifyReveal = (element) => {
         if (element.matches("h1, h2, .title-huge, .title-large")) {
             element.classList.add("reveal-title");
@@ -26,8 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!reduceMotion && "IntersectionObserver" in window) {
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                // Remove a classe quando sai da tela para que a animação
-                // aconteça novamente ao voltar para o começo/trecho anterior.
                 entry.target.classList.toggle("active", entry.isIntersecting);
             });
         }, {
