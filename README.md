@@ -1,27 +1,60 @@
 # MIRELA — Quem é aquela garota?
 
-> Um arquivo pessoal transformado em experiência digital.
+> Um pequeno documentário digital sobre uma pessoa que se tornou parte da minha vida.
 
-Este projeto nasceu como uma forma de transformar uma história de amor em um site. **Mirela** é um arquivo visual e narrativo sobre a pessoa que, em algum momento, deixou de ser apenas "aquela garota" e passou a fazer parte da minha vida.
+![Distância — trecho do arquivo](imagens/distancia.gif)
 
-A proposta não é ser apenas uma página bonita. É uma experiência de leitura, memória e sentimento, construída para registrar momentos, pensamentos, mudanças e tudo aquilo que fez parte da nossa história.
+## Sobre
 
-## ✦ Sobre o projeto
+Eu fiz este site com o intuito de **presentear minha namorada**.
 
-O site apresenta a história em capítulos, misturando textos pessoais, fotografias, elementos editoriais, animações e uma estética inspirada em arquivos visuais e publicações contemporâneas.
+Ela é alguém muito importante para mim e, no fim das contas, percebi que aquilo que eu sei fazer melhor era transformar a nossa história em um documentário.
 
-A narrativa percorre desde o primeiro momento em que reparei nela até a nossa vida juntos, passando pelo começo do relacionamento, reencontros, dificuldades, crescimento pessoal e a pessoa que estou tentando me tornar.
+Em vez de tentar resumir tudo em uma carta, um presente ou algumas fotografias, criei um arquivo digital para guardar as coisas do jeito que eu enxergo: em capítulos, imagens, lembranças, textos e pequenos detalhes.
 
-## 🖥️ Tecnologias
+**Mirela** é, ao mesmo tempo, uma homenagem a ela e um registro de quem nós somos.
 
-O projeto foi desenvolvido do zero utilizando tecnologias web fundamentais:
+---
 
-- **HTML5** — estrutura e conteúdo da experiência;
-- **CSS3** — identidade visual, layout, tipografia, responsividade, animações e efeitos;
-- **JavaScript** — interações e animações acionadas conforme a navegação pela página;
-- **GitHub Pages** — hospedagem gratuita do site.
+## ✦ O projeto
 
-As fontes utilizadas na identidade visual são carregadas através do Google Fonts.
+A experiência foi construída para parecer menos uma página tradicional e mais um **arquivo editorial pessoal**.
+
+A narrativa atravessa o primeiro momento em que reparei nela, a distância, o reencontro, o começo do relacionamento, a nossa vida, as dificuldades, as mudanças e a pessoa que estou tentando me tornar ao lado dela.
+
+O visual segue uma linguagem minimalista, monocromática e documental, com vermelho como ponto de destaque. A ideia é deixar o conteúdo respirar e fazer as imagens e os textos carregarem a história.
+
+---
+
+## 🎞️ A experiência
+
+O site utiliza animações discretas durante a navegação:
+
+- títulos entram com movimentos próprios;
+- textos aparecem de maneira suave;
+- fotografias revelam-se com escala e opacidade;
+- tags e pequenos elementos editoriais têm movimentos mais sutis;
+- os elementos voltam a animar quando entram novamente na tela;
+- a fotografia do capítulo **JONAS** possui um movimento de parallax lento;
+- a imagem final recebe um acabamento editorial próprio.
+
+Tudo foi pensado para que a animação acompanhe a leitura, sem disputar atenção com a história.
+
+---
+
+## 🛠️ Tecnologias
+
+O projeto foi desenvolvido do zero com tecnologias web fundamentais:
+
+- **HTML5** — estrutura semântica e conteúdo;
+- **CSS3** — identidade visual, responsividade, layout e animações;
+- **JavaScript** — controle das animações de entrada, repetição durante o scroll e parallax;
+- **Google Fonts** — tipografia editorial;
+- **GitHub Pages** — publicação do site.
+
+Não existe framework de interface no projeto. A experiência foi construída diretamente com HTML, CSS e JavaScript para manter o código leve e sob controle.
+
+---
 
 ## 📁 Estrutura
 
@@ -33,33 +66,49 @@ Mirela/
 ├── js/
 │   └── script.js
 ├── imagens/
+│   ├── distancia.gif
+│   ├── estilo.jpg
+│   ├── jonas.jpg
+│   ├── mirelaeye.jpg
+│   ├── nos.jpg
+│   └── teamo.jpg
 └── README.md
 ```
 
-## 🎞️ Experiência
-
-A página foi pensada para ser navegada como uma espécie de arquivo digital. Os capítulos aparecem progressivamente durante a rolagem, enquanto imagens, textos e elementos gráficos ajudam a construir o ritmo da narrativa.
-
-O JavaScript utiliza recursos nativos do navegador para detectar a entrada dos elementos na tela e ativar suas animações conforme a pessoa navega pelo arquivo.
+---
 
 ## ❤️ Por que eu fiz isso?
 
-Porque algumas histórias merecem ser guardadas de um jeito diferente.
+Porque eu queria dar para ela alguma coisa que tivesse a minha cara.
 
-Este site é uma tentativa de transformar uma parte da minha vida em algo que eu possa olhar daqui a alguns anos e lembrar exatamente do que eu sentia enquanto estava escrevendo.
+Eu não sabia fazer o presente perfeito. Mas sabia escrever, organizar imagens, criar uma página e contar uma história.
 
-É sobre Mirela, mas também é sobre mim, sobre nós e sobre tudo que ainda estamos construindo.
+Então fiz isso.
+
+Um documentário sobre a nossa vida.
+
+Sobre a garota que um dia eu vi de longe e quis conhecer.
+Sobre a mulher que acabou se tornando uma das pessoas mais importantes da minha vida.
+Sobre nós dois.
+
+E também sobre o cara que eu estou tentando me tornar.
+
+> Algumas histórias não precisam ser perfeitas para merecer ser guardadas.
+
+---
 
 ## 🔗 Links
 
-**Site:**
-https://villernoirfilm.github.io/Mirela/
+**Site:** https://villernoirfilm.github.io/Mirela/
 
-**Repositório:**
-https://github.com/villernoirfilm/Mirela
+**Repositório:** https://github.com/villernoirfilm/Mirela
+
+---
 
 ## ✍️ Autor
 
-**Noir / Jonas**
+**Noir / Jonas Braz**
 
-Arquivo pessoal. Uma história ainda em construção.
+Arquivo pessoal · 2026
+
+Uma história ainda em construção.
