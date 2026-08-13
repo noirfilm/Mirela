@@ -19,6 +19,37 @@ document.addEventListener("DOMContentLoaded", () => {
         photo.appendChild(caption);
     }
 
+    // Se existir uma parte final intitulada apenas “NOS”, ela passa a ser
+    // continuação editorial do capítulo 04, em vez de parecer um capítulo novo.
+    const chapter4 = document.querySelector("#capitulo-04 .container");
+    const nosHeading = [...document.querySelectorAll("h1, h2, h3")].find((heading) => {
+        const text = heading.textContent.replace(/\s+/g, " ").trim().toUpperCase();
+        return text === "NOS" && !heading.closest("#capitulo-04");
+    });
+
+    if (chapter4 && nosHeading) {
+        const sourceSection = nosHeading.closest("section");
+        const sourceContainer = nosHeading.closest(".container");
+        const merged = document.createElement("div");
+        merged.className = "merged-nos";
+
+        const sourceHeader = nosHeading.closest(".chapter-header");
+        let cursor = sourceHeader || nosHeading;
+        merged.appendChild(cursor);
+
+        while (cursor.nextElementSibling) {
+            const next = cursor.nextElementSibling;
+            merged.appendChild(next);
+        }
+
+        chapter4.appendChild(merged);
+
+        // Remove somente a casca vazia que sobrou da antiga seção.
+        if (sourceContainer && sourceContainer.children.length === 0 && sourceSection) {
+            sourceSection.remove();
+        }
+    }
+
     // Cada parágrafo entra separadamente. O atraso reinicia em cada bloco,
     // evitando que textos longos fiquem esperando demais para aparecer.
     document.querySelectorAll(".text-body").forEach((block) => {
