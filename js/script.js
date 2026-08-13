@@ -1,9 +1,121 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("js-enabled");
 
-    // A música foi removida da experiência. O iframe antigo é neutralizado
-    // aqui também para manter compatibilidade com versões anteriores do HTML.
-    document.getElementById("youtube-player")?.remove();
+    // Os dois traços da navegação funcionam como um controle discreto da trilha.
+    const musicButton = document.querySelector(".menu-icon");
+    const musicFrame = document.getElementById("youtube-player");
+
+    if (musicButton && musicFrame) {
+        let musicPlayer = null;
+        let playerReady = false;
+        let wantsMusic = false;
+
+        musicButton.setAttribute("role", "button");
+        musicButton.setAttribute("tabindex", "0");
+        musicButton.setAttribute("aria-label", "Tocar música de fundo");
+        musicButton.setAttribute("aria-pressed", "false");
+
+        musicFrame.setAttribute("title", "Música de fundo");
+        musicFrame.setAttribute("aria-hidden", "true");
+        musicFrame.setAttribute("tabindex", "-1");
+        musicFrame.setAttribute("allow", "autoplay; encrypted-media");
+        musicFrame.width = "1";
+        musicFrame.height = "1";
+        Object.assign(musicFrame.style, {
+            position: "fixed",
+            left: "-9999px",
+            bottom: "0",
+            width: "1px",
+            height: "1px",
+            opacity: "0",
+            pointerEvents: "none"
+        });
+
+        const playerUrl = new URL(musicFrame.src);
+        playerUrl.searchParams.set("controls", "0");
+        playerUrl.searchParams.set("playsinline", "1");
+        playerUrl.searchParams.set("origin", window.location.origin);
+        musicFrame.src = playerUrl.toString();
+
+        const updateMusicButton = (playing) => {
+            musicButton.classList.toggle("music-playing", playing);
+            musicButton.setAttribute("aria-pressed", String(playing));
+            musicButton.setAttribute(
+                "aria-label",
+                playing ? "Pausar música de fundo" : "Tocar música de fundo"
+            );
+        };
+
+        const toggleMusic = () => {
+            wantsMusic = !wantsMusic;
+            updateMusicButton(wantsMusic);
+
+            if (!playerReady || !musicPlayer) return;
+
+            if (wantsMusic) {
+                musicPlayer.unMute();
+                musicPlayer.setVolume(20);
+                musicPlayer.playVideo();
+            } else {
+                musicPlayer.pauseVideo();
+            }
+        };
+
+        musicButton.addEventListener("click", toggleMusic);
+        musicButton.addEventListener("keydown", (event) => {
+            if (event.key !== "Enter" && event.key !== " ") return;
+            event.preventDefault();
+            toggleMusic();
+        });
+
+        const initializeMusicPlayer = () => {
+            if (musicPlayer || !window.YT || typeof window.YT.Player !== "function") return;
+
+            musicPlayer = new window.YT.Player("youtube-player", {
+                events: {
+                    onReady: (event) => {
+                        playerReady = true;
+                        event.target.setVolume(20);
+
+                        if (wantsMusic) {
+                            event.target.unMute();
+                            event.target.playVideo();
+                        }
+                    },
+                    onStateChange: (event) => {
+                        if (event.data === window.YT.PlayerState.PLAYING) {
+                            wantsMusic = true;
+                            updateMusicButton(true);
+                        } else if (event.data === window.YT.PlayerState.PAUSED) {
+                            wantsMusic = false;
+                            updateMusicButton(false);
+                        } else if (event.data === window.YT.PlayerState.ENDED && wantsMusic) {
+                            event.target.seekTo(0, true);
+                            event.target.playVideo();
+                        }
+                    },
+                    onError: () => {
+                        wantsMusic = false;
+                        updateMusicButton(false);
+                    }
+                }
+            });
+        };
+
+        const previousYouTubeReady = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = () => {
+            if (typeof previousYouTubeReady === "function") previousYouTubeReady();
+            initializeMusicPlayer();
+        };
+
+        if (window.YT && typeof window.YT.Player === "function") {
+            initializeMusicPlayer();
+        } else if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+            const apiScript = document.createElement("script");
+            apiScript.src = "https://www.youtube.com/iframe_api";
+            document.head.appendChild(apiScript);
+        }
+    }
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
