@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("js-enabled");
 
-    // O player antigo do YouTube não faz mais parte da experiência.
+    // A experiência não depende mais do player do YouTube.
     document.getElementById("youtube-player")?.remove();
 
-    // Cria o acabamento editorial da primeira fotografia sem alterar
-    // o conteúdo original do HTML.
+    // Primeira fotografia: transforma a imagem existente em uma pequena
+    // ficha de arquivo, sem alterar o conteúdo da história.
     const firstImage = document.querySelector("#capitulo-00 .container > img");
     if (firstImage && !firstImage.closest(".memory-photo")) {
         const photo = document.createElement("div");
@@ -19,11 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
         photo.appendChild(caption);
     }
 
-    // Cada parágrafo ganha uma entrada própria, com pequenos intervalos
-    // para criar uma leitura contínua em vez de uma animação em bloco.
-    document.querySelectorAll(".text-body p").forEach((paragraph, index) => {
-        paragraph.classList.add("reveal", "reveal-paragraph");
-        paragraph.style.setProperty("--p-delay", `${(index % 5) * 0.07}s`);
+    // Cada parágrafo entra separadamente. O atraso reinicia em cada bloco,
+    // evitando que textos longos fiquem esperando demais para aparecer.
+    document.querySelectorAll(".text-body").forEach((block) => {
+        block.querySelectorAll(":scope > p").forEach((paragraph, index) => {
+            paragraph.classList.add("reveal", "reveal-paragraph");
+            paragraph.style.setProperty("--p-delay", `${Math.min(index, 4) * 0.065}s`);
+        });
     });
 
     const revealElements = document.querySelectorAll(".reveal");
@@ -52,13 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!reduceMotion && "IntersectionObserver" in window) {
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                // Ao sair da tela, o estado volta ao inicial. Assim, ao
-                // retornar para o começo ou para um capítulo, a animação toca de novo.
+                // Reaparece quando o leitor retorna ao trecho, mantendo o site vivo.
                 entry.target.classList.toggle("active", entry.isIntersecting);
             });
         }, {
-            threshold: 0.12,
-            rootMargin: "0px 0px -8% 0px"
+            threshold: 0.14,
+            rootMargin: "0px 0px -10% 0px"
         });
 
         revealElements.forEach((element) => revealObserver.observe(element));
@@ -73,9 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateParallax = () => {
         const rect = jonasChapter.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
-        const visible = rect.top < viewportHeight && rect.bottom > 0;
 
-        if (visible) {
+        if (rect.top < viewportHeight && rect.bottom > 0) {
             const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
             const y = (progress * 16) - 8;
             parallaxImage.style.transform = `scale(1.08) translate3d(0, ${y}%, 0)`;
@@ -85,10 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const requestParallax = () => {
-        if (!ticking) {
-            window.requestAnimationFrame(updateParallax);
-            ticking = true;
-        }
+        if (ticking) return;
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
     };
 
     window.addEventListener("scroll", requestParallax, { passive: true });
