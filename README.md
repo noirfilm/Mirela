@@ -38,7 +38,7 @@ E também sobre o cara que eu estou tentando me tornar.
 
 ## 🔗 Links
 
-**Site:** https://villernoirfilm.github.io/Mirela/
+**Site:** https://noirfilm.github.io/Mirela/
 
-**Repositório:** https://github.com/villernoirfilm/Mirela
+**Repositório:** https://github.com/noirfilm/Mirela
 
